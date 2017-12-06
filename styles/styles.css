@@ -18,6 +18,28 @@ body, html{
 	height: 100%;
 	background-color: rgba(255, 255, 255, 0.7);
 }
+.days{
+	display: grid;
+	grid-template-columns: 150px 150px 150px 150px 150px;
+	grid-gap: 10px;
+	background-color: white;
+	color: black;
+}
+.box{
+	padding: 20px;
+	border: solid medium black;
+}
+.month-header{
+	font-size: 50px;
+	color: white;
+	background-color: black;
+	text-align: center;
+	margin: auto;
+	width: 50%;
+	padding: 2% 0 2% 0;
+	border-style: dotted;
+	border-color: black;
+}
 /* mini logo in bottom left */
 .mini-logo{
 	position: absolute;
@@ -29,6 +51,7 @@ hr{
 	margin: auto;
 	width: 60%;
 }
+/************************************************************************************/
 
 
 /* homepage styles */
@@ -50,6 +73,7 @@ hr{
 	animation-name: fadeIn;
 	animation-duration: 8.5s;
 }
+/************************************************************************************/
 
 
 /*upcoming events styles */
@@ -80,6 +104,8 @@ hr{
 	font-size: 26px;
 	padding-bottom: 2%;
 }
+/************************************************************************************/
+
 
 /* this month styles */
 .this-month{
@@ -87,7 +113,10 @@ hr{
 	background: url("../imgs/grass.jpg") no-repeat center center fixed;
 	background-size: cover;
 
+
+
 }
+/************************************************************************************/
 
 
 /* next month styles */
@@ -96,6 +125,7 @@ hr{
 	background: url("../imgs/highway.jpg") no-repeat center center fixed;
 	background-size: cover;
 }
+/************************************************************************************/
 
 
 /* endpage styles */
