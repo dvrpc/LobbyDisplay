@@ -23,7 +23,7 @@ body, html{
 	display: grid;
 	justify-content: center;
 	grid-template-columns: 200px 200px 200px 200px 200px;
-	grid-gap: 15px;
+	grid-gap: 20px;
 	color: black;
 }
 .box{
@@ -46,8 +46,8 @@ body, html{
 /* mini logo in bottom left */
 .mini-logo{
 	position: absolute;
-	bottom: 25px;
-	left: 55px;
+	bottom: 23px;
+	left: 44px;
 	background: url("../imgs/mini-logo.png");
 }
 hr{
@@ -62,9 +62,6 @@ hr{
 	height: 100%;
 	background: url("../imgs/home.png") no-repeat center center fixed;
 	background-size: cover;
-
-	/* in case the image can't load */
-	background-color: #76a6d5;
 }
 /* fade-in animation */
 @keyframes fadeIn{
@@ -84,9 +81,6 @@ hr{
 	height: 100%;
 	background: url("../imgs/bridge.jpg") no-repeat center center fixed;
 	background-size: cover;
-
-	/*in case the image can't load */
-	background-color: #b14e10;
 }
 .upcoming-content-box{
 	text-align: center;
@@ -115,10 +109,18 @@ hr{
 	height: 100%;
 	background: url("../imgs/grass.jpg") no-repeat center center fixed;
 	background-size: cover;
-
-
+}
+.weekdays{
+	padding-top: 2%;
+	margin-left: 10%;
+	width: 80%;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
 
 }
+
+
 /************************************************************************************/
 
 
@@ -133,5 +135,7 @@ hr{
 
 /* endpage styles */
 .endpage{
-
+	height: 100%;
+	background: url("../imgs/endpage.png") no-repeat center center fixed;
+	background-size: cover;
 }
