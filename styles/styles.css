@@ -6,8 +6,16 @@
 body, html{
 	height: 100%;
 }
+/* inactive background */
 .hidden{
 	display: none;
+}
+/* calendar grids */
+.calendar{
+	margin-left: 30%;
+	width: 65%;
+	height: 100%;
+	background-color: rgba(255, 255, 255, 0.5);
 }
 
 
@@ -31,9 +39,22 @@ body, html{
 	animation-duration: 8.5s;
 }
 
+
 /*upcoming events styles */
 .upcoming{
+	height: 100%;
+	background: url("../imgs/bridge.jpg") no-repeat center center fixed;
+	background-size: cover;
 
+	/*in case the image can't load */
+	background-color: #b14e10;
+}
+.upcoming-content-box{
+	text-align: center;
+	margin-left: 27%;
+	width: 65%;
+	height: 100%;
+	background: linear-gradient(rgba(255, 255, 255, 0.3), white 45%);
 }
 
 /* this month styles */
@@ -41,10 +62,12 @@ body, html{
 
 }
 
+
 /* next month styles */
 .next-month{
 
 }
+
 
 /* endpage styles */
 .endpage{
