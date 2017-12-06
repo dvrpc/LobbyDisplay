@@ -2,6 +2,7 @@
 *{
 	margin: 0;
 	padding: 0;
+	font-family: 'Roboto', sans-serif;
 }
 body, html{
 	height: 100%;
@@ -12,10 +13,21 @@ body, html{
 }
 /* calendar grids */
 .calendar{
-	margin-left: 30%;
+	margin-left: 27%;
 	width: 65%;
 	height: 100%;
-	background-color: rgba(255, 255, 255, 0.5);
+	background-color: rgba(255, 255, 255, 0.7);
+}
+/* mini logo in bottom left */
+.mini-logo{
+	position: absolute;
+	bottom: 25px;
+	left: 55px;
+	background: url("../imgs/mini-logo.png");
+}
+hr{
+	margin: auto;
+	width: 60%;
 }
 
 
@@ -56,16 +68,33 @@ body, html{
 	height: 100%;
 	background: linear-gradient(rgba(255, 255, 255, 0.3), white 45%);
 }
+.upcoming-content-box h1{
+	padding: 8% 0 3% 0;
+	font-size: 86px;
+}
+.upcoming-content-box h2{
+	padding: 2% 0 1% 0;
+	font-size: 46px;
+}
+.upcoming-content-box p{
+	font-size: 26px;
+	padding-bottom: 2%;
+}
 
 /* this month styles */
 .this-month{
+	height: 100%;
+	background: url("../imgs/grass.jpg") no-repeat center center fixed;
+	background-size: cover;
 
 }
 
 
 /* next month styles */
 .next-month{
-
+	height: 100%;
+	background: url("../imgs/highway.jpg") no-repeat center center fixed;
+	background-size: cover;
 }
 
 
