@@ -1,18 +1,52 @@
 /* general purpose targetting */
 *{
 	margin: 0;
+	padding: 0;
+}
+body, html{
+	height: 100%;
+}
+.hidden{
+	display: none;
 }
 
-/* homepage styles */
 
+/* homepage styles */
+.homepage{
+	height: 100%;
+	background: url("../imgs/home.png") no-repeat center center fixed;
+	background-size: cover;
+
+	/* in case the image can't load */
+	background-color: #76a6d5;
+}
+/* fade-in animation */
+@keyframes fadeIn{
+	0% {opacity: 0;}
+	100% {opacity: 1;}
+}
+.logo{
+	padding-top: 17.5%;
+	animation-name: fadeIn;
+	animation-duration: 8.5s;
+}
 
 /*upcoming events styles */
+.upcoming{
 
+}
 
-/* current month styles */
+/* this month styles */
+.this-month{
 
+}
 
 /* next month styles */
+.next-month{
 
+}
 
 /* endpage styles */
+.endpage{
+
+}
