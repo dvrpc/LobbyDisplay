@@ -1,9 +1,5 @@
 'use strict'
 
-// slideshow effect: setTimeout shifts the hidden class
-// cycles through array of divs [homepage, upcoming, thisMonth, nextMonth, endpage] and moves the 'hidden' class from current to next after
-// a set interval. This loop runs on an infinite loop
-
 // get a hold of each div 
 let homepage = document.querySelector('.homepage')
 let upcoming = document.querySelector('.upcoming')
@@ -19,7 +15,7 @@ const updateView = arr => {
 	// finds the current non-hidden element and avoids grabbing the divs associated w/the calendar
 	let currentView = document.querySelector('div:not(.hidden):not(.weekdays):not(.days):not(.box)')
 
-	console.log('what is currentView ', currentView)
+
 	// get index of currentView
 	const index = arr.indexOf(currentView) // 0 for homepage, 4 for endpage
 
@@ -27,6 +23,10 @@ const updateView = arr => {
 	currentView.classList.add('hidden')
 
 	// check if current view is the last element & removes hidden from 1st element if true
+	// HERE: add an ENTRACE animation when removing the hidden class? Maybe add a 'introduction' class
+	// that has a simple keyframe animation to come in from 0? 
+	// ALTERNATIVE: add an EXIT animation to current view when you add the 'hidden' class by tacking on a 'last-used' class
+	// that has a keyframe fadeOut animation (or pixelate out or something)
 	if(index === (arr.length - 1)){
 		arr[0].classList.remove('hidden')
 	}else{
