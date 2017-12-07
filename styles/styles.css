@@ -59,15 +59,15 @@ hr{
 	background: linear-gradient(rgba(255, 255, 255, 0.3), white 45%);
 }
 .upcoming-content-box h1{
-	padding: 8% 0 3% 0;
-	font-size: 86px;
+	padding: 8% 0 4% 0;
+	font-size: 100px;
 }
 .upcoming-content-box h2{
 	padding: 2% 0 1% 0;
-	font-size: 46px;
+	font-size: 40px; 
 }
 .upcoming-content-box p{
-	font-size: 26px;
+	font-size: 30px;
 	padding-bottom: 2%;
 }
 /************************************************************************************/
