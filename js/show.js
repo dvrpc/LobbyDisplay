@@ -23,14 +23,10 @@ const updateView = arr => {
 	currentView.classList.add('hidden')
 
 	// check if current view is the last element & removes hidden from 1st element if true
-	// HERE: add an ENTRACE animation when removing the hidden class? Maybe add a 'introduction' class
-	// that has a simple keyframe animation to come in from 0? 
-	// ALTERNATIVE: add an EXIT animation to current view when you add the 'hidden' class by tacking on a 'last-used' class
-	// that has a keyframe fadeOut animation (or pixelate out or something)
 	if(index === (arr.length - 1)){
 		arr[0].classList.remove('hidden')
 	}else{
-		// removes hidden from the next element
+		// removes hidden from the next element when currentView isn't the last element
 		arr[index + 1].classList.remove('hidden')
 	}
 } 

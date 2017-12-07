@@ -81,7 +81,7 @@ hr{
 	background-color: rgba(255, 255, 255, 0.7);
 }
 .weekdays{
-	padding-top: 3%;
+	padding-top: 2.5%;
 	margin-left: 10%;
 	width: 80%;
 	display: flex;
@@ -90,7 +90,7 @@ hr{
 
 }
 .days{
-	padding-top: 2%;
+	padding-top: 1%;
 	display: grid;
 	justify-content: center;
 	grid-template-columns: 200px 200px 200px 200px 200px;
@@ -98,7 +98,7 @@ hr{
 	color: black;
 }
 .box{
-	height: 100px;
+	height: 107px;
 	padding: 20px;
 	border: solid 2px black;
 	background-color: white;
