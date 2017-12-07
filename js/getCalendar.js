@@ -22,9 +22,6 @@ const getData = async () => {
 		const timing = data.events[index].StartTime ? `${data.events[index].StartTime} - ${data.events[index].EndTime}  |  ` : ''
 		content.innerHTML = `${timing} ${date}`
 	})
-
-	// for the Current Month page
-	thisMonthTitle.innerHTML = month
 	
 	const date = new Date()
 	const month = months[date.getMonth() + 1] 
@@ -33,14 +30,23 @@ const getData = async () => {
 	// output is Thu Dec 07 2017
 	const today = date.toDateString()
 
+	// for the Current Month page
+	thisMonthTitle.innerHTML = month
+
 	const firstOfMonth = new Date(`${month}-${year}-01`)
 
 	// output is Fri Dec 01 2017 and a time string
 	console.log('first of month for december is ', firstOfMonth)
 	
 	// using first of the month, number each square in the calendar according to their date
-	// in order to make this calendar, I might have to re-write my CSS grid to be 5 columns, each one consisting
-	// of 5 rows instead of the current 5 x 5 set up I have now. That way, I can 
+	// thoguht process: get a hold of each box in the calendar in an array. Loop through that array starting from 
+	// the number corresponding to firstOfMonth (e.g. Fri = 5) and do two things
+		// a) change their background color
+		// b) number them w/a a counter up to five and each time the counter hits five, add two (this accounts for weekends)
+		// c) hopefully this works... 
+	let calendarBoxes = document.querySelectorAll('.box')
+	console.log('calendarBoxes ', calendarBoxes)
+
 
 	// loop through each event object and place them accordingly 
 	data.events.forEach((event, index) => {
