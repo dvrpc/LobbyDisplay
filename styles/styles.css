@@ -97,11 +97,14 @@ hr{
 	grid-gap: 20px;
 	color: black;
 }
-.box{
+.thisMonthBox{
 	height: 107px;
 	padding: 20px;
 	border: solid 2px black;
-	background-color: white;
+	background-color: rgba(255, 255, 255, 0.7);
+}
+.inMonth{
+	background-color: blue;
 }
 .month-header{
 	font-size: 50px;

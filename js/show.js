@@ -15,7 +15,6 @@ const updateView = arr => {
 	// finds the current non-hidden element and avoids grabbing the divs associated w/the calendar
 	let currentView = document.querySelector('div:not(.hidden):not(.weekdays):not(.days):not(.box)')
 
-
 	// get index of currentView
 	const index = arr.indexOf(currentView) // 0 for homepage, 4 for endpage
 

@@ -27,25 +27,24 @@ const getData = async () => {
 	const month = months[date.getMonth() + 1] 
 	const year = date.getFullYear()
 
-	// output is Thu Dec 07 2017
-	const today = date.toDateString()
+	// output is a number corresponding to todays date, e.g. 08
+	const today = date.toDateString().split(' ')[2]
 
 	// for the Current Month page
 	thisMonthTitle.innerHTML = month
 
-	const firstOfMonth = new Date(`${month}-${year}-01`)
-
-	// output is Fri Dec 01 2017 and a time string
-	console.log('first of month for december is ', firstOfMonth)
+	// output is a number 1-7 corresponding to mon-fri
+	const firstOfMonth = new Date(`${month}-${year}-01`).getDay()
 	
-	// using first of the month, number each square in the calendar according to their date
-	// thoguht process: get a hold of each box in the calendar in an array. Loop through that array starting from 
-	// the number corresponding to firstOfMonth (e.g. Fri = 5) and do two things
-		// a) change their background color
-		// b) number them w/a a counter up to five and each time the counter hits five, add two (this accounts for weekends)
-		// c) hopefully this works... 
-	let calendarBoxes = document.querySelectorAll('.box')
+	let calendarBoxes = document.querySelectorAll('.thisMonthBox')
 	console.log('calendarBoxes ', calendarBoxes)
+	calendarBoxes.forEach((day, index) => {
+
+	})
+
+	for(var i = firstOfMonth - 1; i < 25 - firstOfMonth; i++){
+		calendarBoxes[i].classList.add('inMonth')
+	}
 
 
 	// loop through each event object and place them accordingly 
