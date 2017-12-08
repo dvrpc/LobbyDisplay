@@ -33,23 +33,33 @@ const getData = async () => {
 	// for the Current Month page
 	thisMonthTitle.innerHTML = month
 
-	// output is a number 1-7 corresponding to mon-fri
+	// output is a number 0-6 corresponding to mon-fri
 	const firstOfMonth = new Date(`${month}-${year}-01`).getDay()
-	
+	console.log('first of month is ', firstOfMonth)
 	let calendarBoxes = document.querySelectorAll('.thisMonthBox')
-	console.log('calendarBoxes ', calendarBoxes)
-	calendarBoxes.forEach((day, index) => {
 
-	})
+	let dayNum = 1
+	// for friday, i = 4
+	for(var i = firstOfMonth - 1; i < 25; i++){
+		/* for valid days do the following:
+			1) add the inMonth class
+			2) add the day of the week
+			3) IF an event exists on that day, add it
+		*/
 
-	for(var i = firstOfMonth - 1; i < 25 - firstOfMonth; i++){
-		calendarBoxes[i].classList.add('inMonth')
+		// check for valid days: if (0 < i < 6)
+		if(0 < dayNum && dayNum < 6){
+			calendarBoxes[i].classList.add('inMonth')
+			const dayNumP = document.createElement('p')
+			dayNumP.innerHTML = dayNum
+			calendarBoxes[i].appendChild(dayNumP)
+		// if invalid (e.g. sat and sun), i ++
+		}
+		// on weekends
+		if(dayNum === 6) dayNum === 1
+		dayNum++
 	}
-
-
-	// loop through each event object and place them accordingly 
-	data.events.forEach((event, index) => {
-	})
+	console.log('calendarBoxes ', calendarBoxes)
 }
 
 getData()
