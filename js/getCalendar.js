@@ -44,33 +44,42 @@ const getData = async () => {
 
 
 	/***** Upcoming events page *****/
+	let eventsCounter = 0
 	events.forEach((event, index) => {
+		const rawDate = event.StartDate.split('-')
+		const date = `${months[rawDate[1]]} ${rawDate[2]}`
+		
+		// don't include events that have already happened
+		if(rawDate[2] < today) return
+
+		eventsCounter ++
+		// no more than 5 items displayed at a time
+		if(eventsCounter > 5) return
+
 		const title = document.createElement('h2')
 		title.innerHTML = event.Title
 
-		const rawDate = event.StartDate.split('-')
-		const date = `${months[rawDate[1]]} ${rawDate[2]}`
-
-		// don't include events that have already happened
-		if(rawDate[2] < today) return
 		const timing = event.StartTime ? `${event.StartTime} - ${event.EndTime}  |  ` : ''
 		const content = document.createElement('p')
 		content.innerHTML = `${timing}  ${date}`
 
 		const hr = document.createElement('hr')
-		
+
 		upcoming.appendChild(title)
 		upcoming.appendChild(content)
-		if(index != events.length - 1) upcoming.appendChild(hr)
+
+		// don't add an hr to the last event
+		if(eventsCounter < 5) upcoming.appendChild(hr)
 	})
 	
 
-	/**** Dynamically build BOTH calendars ****/
+	/***** Dynamically build BOTH calendars *****/
 	thisMonthTitle.innerHTML = thisMonthString
 	nextMonthTitle.innerHTML = nextMonthString
 	calendarBoxes[today].classList.add('today')
 
 	for(var i = 1; i < 32; i++){
+
 		// populate this months calendar with dates and events
 		if(0 < dayCounter && dayCounter < 6){
 			calendarBoxes[dayTracker].classList.add('in-month')
@@ -117,4 +126,5 @@ const getData = async () => {
 	}
 }
 
+// potentialy wrap this in a setInterval so that it calls once a day around 7 am or something
 getData()
