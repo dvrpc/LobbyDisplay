@@ -27,9 +27,6 @@ const getData = async () => {
 	const month = months[date.getMonth() + 1] 
 	const year = date.getFullYear()
 
-	// output is a number corresponding to todays date, e.g. 08
-	const today = date.toDateString().split(' ')[2]
-
 	// for the Current Month page
 	thisMonthTitle.innerHTML = month
 
@@ -38,6 +35,9 @@ const getData = async () => {
 
 	let calendarBoxes = document.querySelectorAll('.thisMonthBox')
 
+	// output is a number corresponding to todays date, e.g. 08
+	const today = date.toDateString().split(' ')[2]
+	calendarBoxes[today].classList.add('today')
 
 	// calendar date maker
 	let dayNum = 1
@@ -48,7 +48,6 @@ const getData = async () => {
 	// for friday, i = 4
 	// this loop is gross but it works. needs cleaning up ASAP 
 	for(var i = firstOfMonth - 1; i < 31 + firstOfMonth - 1; i++){
-
 		/* for valid days do the following:
 			1) add the inMonth class
 			2) add the day of the week
@@ -61,11 +60,19 @@ const getData = async () => {
 			const dayNumP = document.createElement('p')
 			dayNumP.innerHTML = dayNum
 			calendarBoxes[borf].appendChild(dayNumP)
+			const eventDate = parseInt(data.events[0].StartDate.split('-')[2])
+			console.log('event date ', eventDate)
+			console.log('dayNum ', dayNum)
+			// check for an event on this day
+			if(eventDate === dayNum){
+				console.log('events if statement')
+				const dayEvent = document.createElement('h2')
+				dayEvent.innerHTML = data.events[0].Title
+				calendarBoxes[borf].appendChild(dayEvent)
+				data.events.shift()
+			}
 			borf++
-		}else if(norf === 7){
-			console.log('else if statement')
-			norf = 0
-		}
+		}else if(norf === 7) norf = 0
 
 		norf++ 	
 		dayNum++

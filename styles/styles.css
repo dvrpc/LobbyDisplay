@@ -106,6 +106,9 @@ hr{
 .inMonth{
 	background-color: white;
 }
+.today{
+	background-color: grey;
+}
 .month-header{
 	font-size: 50px;
 	color: white;
