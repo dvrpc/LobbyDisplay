@@ -15,7 +15,7 @@ body, html{
 .mini-logo{
 	position: absolute;
 	bottom: 23px;
-	left: 44px;
+	left: 94px;
 	background: url("../imgs/mini-logo.png");
 }
 /************************************************************************************/
@@ -43,7 +43,7 @@ body, html{
 /*upcoming events styles */
 hr{
 	margin: auto;
-	width: 60%;
+	width: 75%;
 }
 .upcoming{
 	height: 100%;
@@ -58,7 +58,7 @@ hr{
 	background: linear-gradient(rgba(255, 255, 255, 0.3), white 45%);
 }
 .upcoming-content-box h1{
-	padding: 8% 0 4% 0;
+	padding: 6% 0 4% 0;
 	font-size: 100px;
 }
 .upcoming-content-box h2{
