@@ -11,17 +11,12 @@ body, html{
 .hidden{
 	display: none;
 }
-
 /* mini logo in bottom left */
 .mini-logo{
 	position: absolute;
 	bottom: 23px;
 	left: 44px;
 	background: url("../imgs/mini-logo.png");
-}
-hr{
-	margin: auto;
-	width: 60%;
 }
 /************************************************************************************/
 
@@ -46,6 +41,10 @@ hr{
 
 
 /*upcoming events styles */
+hr{
+	margin: auto;
+	width: 60%;
+}
 .upcoming{
 	height: 100%;
 	background: url("../imgs/bridge.jpg") no-repeat center center fixed;
@@ -80,6 +79,17 @@ hr{
 	height: 100%;
 	background-color: rgba(255, 255, 255, 0.7);
 }
+.month-header{
+	font-size: 50px;
+	color: white;
+	background-color: black;
+	text-align: center;
+	margin: auto;
+	width: 50%;
+	padding: 2% 0 2% 0;
+	border-style: dotted;
+	border-color: black;
+}
 .weekdays{
 	padding-top: 2.5%;
 	margin-left: 10%;
@@ -97,28 +107,34 @@ hr{
 	grid-gap: 20px;
 	color: black;
 }
-.thisMonthBox{
+.this-month-box{
+	position: relative;
 	height: 107px;
 	padding: 20px;
 	border: solid 2px black;
 	background-color: none
 }
-.inMonth{
+.day-number{
+	position: absolute;
+	top: 0;
+	left: 0;
+	text-align: center;
+	color: white;
+	background-color: #4C4C4C;
+	width: 17%;
+	height: 20%;
+	padding-top: 3%;
+}
+.event-on-calendar{
+	padding-top: 20%;
+	text-align: right;
+	font-size: 18px;
+}
+.in-month{
 	background-color: white;
 }
 .today{
-	background-color: grey;
-}
-.month-header{
-	font-size: 50px;
-	color: white;
-	background-color: black;
-	text-align: center;
-	margin: auto;
-	width: 50%;
-	padding: 2% 0 2% 0;
-	border-style: dotted;
-	border-color: black;
+	background-color: #E2E2E2;
 }
 /************************************************************************************/
 
