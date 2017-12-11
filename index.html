@@ -5,11 +5,11 @@
 		<title> Lobby Display </title>
 		<link rel="stylesheet" type="text/css" href="./styles/styles.css">
 		<script defer src="./js/getCalendar.js"></script>
-		<script defer src="./js/show.js"></script>
-	</head>
+<!-- 		<script defer src="./js/show.js"></script>
+ -->	</head>
 
 	<body>
-		<div class="homepage">
+		<div class="homepage hidden">
 			<img class="logo" alt="dvrpc logo" src="./imgs/logo.png" />
 		</div>
 
@@ -79,9 +79,9 @@
 			<img class="mini-logo" alt="miniature dvrpc logo" src="./imgs/mini-logo.png" />
 		</div>
 
-		<div class="next-month-calendar hidden">
+		<div class="next-month-calendar">
 			<section class="calendar">
-				<h1 class="month-header"> NextMonth </h1>
+				<h1 id="next-month-name" class="month-header"> </h1>
 				<div class="weekdays">
 					<h2> Monday </h2>
 					<h2> Tuesday </h2>
