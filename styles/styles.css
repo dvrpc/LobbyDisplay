@@ -101,10 +101,10 @@ hr{
 	height: 107px;
 	padding: 20px;
 	border: solid 2px black;
-	background-color: rgba(255, 255, 255, 0.7);
+	background-color: none
 }
 .inMonth{
-	background-color: blue;
+	background-color: white;
 }
 .month-header{
 	font-size: 50px;

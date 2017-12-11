@@ -35,12 +35,20 @@ const getData = async () => {
 
 	// output is a number 0-6 corresponding to mon-fri
 	const firstOfMonth = new Date(`${month}-${year}-01`).getDay()
-	console.log('first of month is ', firstOfMonth)
+
 	let calendarBoxes = document.querySelectorAll('.thisMonthBox')
 
+
+	// calendar date maker
 	let dayNum = 1
+	// 0-6 days of the week counter
+	let norf = firstOfMonth
+	// tracker for dates and shit
+	let borf = firstOfMonth - 1
 	// for friday, i = 4
-	for(var i = firstOfMonth - 1; i < 25; i++){
+	// this loop is gross but it works. needs cleaning up ASAP 
+	for(var i = firstOfMonth - 1; i < 31 + firstOfMonth - 1; i++){
+
 		/* for valid days do the following:
 			1) add the inMonth class
 			2) add the day of the week
@@ -48,18 +56,20 @@ const getData = async () => {
 		*/
 
 		// check for valid days: if (0 < i < 6)
-		if(0 < dayNum && dayNum < 6){
-			calendarBoxes[i].classList.add('inMonth')
+		if(0 < norf && norf < 6){
+			calendarBoxes[borf].classList.add('inMonth')
 			const dayNumP = document.createElement('p')
 			dayNumP.innerHTML = dayNum
-			calendarBoxes[i].appendChild(dayNumP)
-		// if invalid (e.g. sat and sun), i ++
+			calendarBoxes[borf].appendChild(dayNumP)
+			borf++
+		}else if(norf === 7){
+			console.log('else if statement')
+			norf = 0
 		}
-		// on weekends
-		if(dayNum === 6) dayNum === 1
+
+		norf++ 	
 		dayNum++
 	}
-	console.log('calendarBoxes ', calendarBoxes)
 }
 
 getData()
