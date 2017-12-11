@@ -107,7 +107,7 @@ hr{
 	grid-gap: 20px;
 	color: black;
 }
-.this-month-box{
+.box{
 	position: relative;
 	height: 107px;
 	padding: 20px;
@@ -122,8 +122,8 @@ hr{
 	color: white;
 	background-color: #4C4C4C;
 	width: 17%;
-	height: 20%;
-	padding-top: 3%;
+	height: 19%;
+	padding-top: 4%;
 }
 .event-on-calendar{
 	padding-top: 20%;
@@ -134,13 +134,13 @@ hr{
 	background-color: white;
 }
 .today{
-	background-color: #E2E2E2;
+	background-color: #C9C9C9;
 }
 /************************************************************************************/
 
 
 /* this month styles */
-.this-month{
+.this-month-calendar{
 	height: 100%;
 	background: url("../imgs/grass.jpg") no-repeat center center fixed;
 	background-size: cover;
@@ -149,7 +149,7 @@ hr{
 
 
 /* next month styles */
-.next-month{
+.next-month-calendar{
 	height: 100%;
 	background: url("../imgs/highway.jpg") no-repeat center center fixed;
 	background-size: cover;

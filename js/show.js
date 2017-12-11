@@ -3,8 +3,8 @@
 // get a hold of each div 
 let homepage = document.querySelector('.homepage')
 let upcoming = document.querySelector('.upcoming')
-let this_month = document.querySelector('.this-month')
-let next_month = document.querySelector('.next-month')
+let this_month = document.querySelector('.this-month-calendar')
+let next_month = document.querySelector('.next-month-calendar')
 let endpage = document.querySelector('.endpage')
 
 // make an array of the divs
@@ -13,7 +13,7 @@ const elements = [homepage, upcoming, this_month, next_month, endpage]
 // add/remove the hidden class 
 const updateView = arr => {
 	// finds the current non-hidden element and avoids grabbing the divs associated w/the calendar
-	let currentView = document.querySelector('div:not(.hidden):not(.weekdays):not(.days):not(.thisMonthBox)')
+	let currentView = document.querySelector('div:not(.hidden):not(.weekdays):not(.days):not(.box)')
 
 	// get index of currentView
 	const index = arr.indexOf(currentView) // 0 for homepage, 4 for endpage

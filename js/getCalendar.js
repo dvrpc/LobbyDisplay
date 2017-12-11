@@ -17,7 +17,7 @@ const getData = async () => {
 	const thisMonth = months[date.getMonth() + 1] 
 	const year = date.getFullYear()
 	let dayCounter = new Date(`${thisMonth}-${year}-01`).getDay()
-	const calendarBoxes = document.querySelectorAll('.this-month-box')
+	const calendarBoxes = document.querySelectorAll('.this-month')
 	const today = date.toDateString().split(' ')[2]
 	let dayNum = 1
 	let dayTracker = dayCounter - 1
@@ -35,7 +35,6 @@ const getData = async () => {
 	thisMonthTitle.innerHTML = thisMonth
 	calendarBoxes[today].classList.add('today')
 
-	// this loop is gross but it works. needs cleaning up ASAP 
 	for(var i = 1; i < 31; i++){
 
 		// check for valid days: if (0 < i < 6)
