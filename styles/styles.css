@@ -14,7 +14,7 @@ body, html{
 /* mini logo in bottom left */
 .mini-logo{
 	position: absolute;
-	bottom: 23px;
+	bottom: 30px;
 	left: 94px;
 	background: url("../imgs/mini-logo.png");
 }
@@ -33,7 +33,7 @@ body, html{
 	100% {opacity: 1;}
 }
 .logo{
-	padding: 17.5% 0 0 1.5%;
+	padding: 20% 0 0 1.5%;
 	animation-name: fadeIn;
 	animation-duration: 8s;
 }
@@ -58,7 +58,7 @@ hr{
 	background: linear-gradient(rgba(255, 255, 255, 0.3), white 45%);
 }
 .upcoming-content-box h1{
-	padding: 6% 0 4% 0;
+	padding: 6% 0 6% 0;
 	font-size: 110px;
 }
 .upcoming-content-box h2{
@@ -72,7 +72,7 @@ hr{
 /************************************************************************************/
 
 
-/* general calendar styles */
+/*calendar styles */
 .calendar{
 	margin-left: 27%;
 	width: 65%;
@@ -108,12 +108,12 @@ hr{
 	color: black;
 }
 .days h2{
-	padding-top: 10%;
+	padding-top: 25%;
 	text-align: center;
 }
 .box{
 	position: relative;
-	height: 107px;
+	height: 120px;
 	padding: 20px;
 	border: solid 2px black;
 	background-color: none
@@ -130,9 +130,8 @@ hr{
 	padding-top: 4%;
 }
 .event-on-calendar{
-	margin-top: 5%;
 	text-align: right !important;
-	font-size: 18px;
+	font-size: 19px;
 }
 .in-month{
 	background-color: white;
@@ -165,5 +164,5 @@ hr{
 .endpage{
 	height: 100%;
 	background: url("../imgs/endpage.png") no-repeat center center fixed;
-	background-size: cover;
+	background-size: 100% 100%;
 }

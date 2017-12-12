@@ -14,7 +14,7 @@ const getData = async () => {
 	/***** set up to create THIS months calendar *****/
 	const today = date.toDateString().split(' ')[2]
 	let thisMonth = date.getMonth() + 1
-	const thisMonthString = months[thisMonth] 
+	const thisMonthString = months[thisMonth]
 	const year = date.getFullYear()
 	const endOfMonth = new Date(year, thisMonth, 0).toDateString().split(' ')[2]
 	
@@ -43,33 +43,41 @@ const getData = async () => {
 	const nextMonthEvents = await nextMonthStream.json()
 
 
-	/***** Dynamically build the upcoming events page *****/
-	let eventsCounter = 0
-	events.forEach((event, index) => {
-		const rawDate = event.StartDate.split('-')
-		const date = `${months[rawDate[1]]} ${rawDate[2]}`
+	/***** Dynamically build the upcoming events page, limited to 5 events from either this month or next month *****/
+	let eventsHolder = Object.assign([], events)
+	let nextMonthsEventsHolder = Object.assign([], nextMonthEvents)
+	const notEnoughEvents = {StartDate: '', Title: '', StartTime: '', EndTime: ''}
+
+	for(var i = 0; i < 5; i++){
+
+		// figure out if the event is coming from this month or next month then grab it and shift the array it came from
+		// edge case where there aren't 5 events between the two months, use the empty object
+		const thisEvent = eventsHolder.length ? eventsHolder.shift() : nextMonthsEventsHolder.length ? nextMonthsEventsHolder.shift() : notEnoughEvents
 		
-		// don't include events that have already happened
-		if(rawDate[2] < today) return
+		const rawDate = thisEvent.StartDate.split('-')
+		const eventDate = new Date(rawDate[0], rawDate[1], rawDate[2])
+		const todaysDate = new Date(year, thisMonth, today)
 
-		eventsCounter ++
+		// compare event date to today and skip any events that have already passed
+		if(eventDate < todaysDate) {
+			i--
+			continue
+		}
 
-		// no more than 5 items displayed at a time
-		if(eventsCounter > 5) return
-
+		const date = `${months[parseInt(rawDate[1])]} ${rawDate[2]}`
 		const title = document.createElement('h2')
-		title.innerHTML = event.Title
-
-		const timing = event.StartTime ? `${event.StartTime} - ${event.EndTime}  |  ` : ''
+		const timing = thisEvent.StartTime ? `${thisEvent.StartTime} - ${thisEvent.EndTime}  |  ` : ''
 		const content = document.createElement('p')
+		title.innerHTML = thisEvent.Title
 		content.innerHTML = `${timing}  ${date}`
 
-		const hr = document.createElement('hr')
-
-		if(eventsCounter > 1 ) upcomingEvents.appendChild(hr)
 		upcomingEvents.appendChild(title)
 		upcomingEvents.appendChild(content)
-	})
+		if(i < 4 ){
+			const hr = document.createElement('hr')
+			upcomingEvents.appendChild(hr)
+		}
+	}
 	
 
 	/***** Dynamically build BOTH calendars *****/
