@@ -43,7 +43,7 @@ const getData = async () => {
 	const nextMonthEvents = await nextMonthStream.json()
 
 
-	/***** Upcoming events page *****/
+	/***** Dynamically build the upcoming events page *****/
 	let eventsCounter = 0
 	events.forEach((event, index) => {
 		const rawDate = event.StartDate.split('-')
