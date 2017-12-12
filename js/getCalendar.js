@@ -1,7 +1,7 @@
 const months = ['fake index month', 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
 
 // get a hold of the Upcoming Events information 
-const upcoming = document.querySelector('#upcoming-events')
+const upcomingEvents = document.querySelector('#upcoming-events')
 const calendarBoxes = document.querySelectorAll('.this-month')
 const nextMonthCalendarBoxes = document.querySelectorAll('.next-month')
 let thisMonthTitle = document.getElementById('current-month-name')
@@ -53,6 +53,7 @@ const getData = async () => {
 		if(rawDate[2] < today) return
 
 		eventsCounter ++
+
 		// no more than 5 items displayed at a time
 		if(eventsCounter > 5) return
 
@@ -65,11 +66,9 @@ const getData = async () => {
 
 		const hr = document.createElement('hr')
 
-		upcoming.appendChild(title)
-		upcoming.appendChild(content)
-
-		// don't add an hr to the last event
-		if(eventsCounter < 5) upcoming.appendChild(hr)
+		if(eventsCounter > 1 ) upcomingEvents.appendChild(hr)
+		upcomingEvents.appendChild(title)
+		upcomingEvents.appendChild(content)
 	})
 	
 
