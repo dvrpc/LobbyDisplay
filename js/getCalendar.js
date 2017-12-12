@@ -7,9 +7,37 @@ const nextMonthCalendarBoxes = document.querySelectorAll('.next-month')
 let thisMonthTitle = document.getElementById('current-month-name')
 const nextMonthTitle = document.getElementById('next-month-name')
 
+const makeCalendar = (dayCounter, dayTracker, calendarBoxes, events) => {
+	let dayNum = 1
+	for(var i = 1; i < 32; i++){
+
+		// populate the months calendar with dates and events
+		if(0 < dayCounter && dayCounter < 6){
+			calendarBoxes[dayTracker].classList.add('in-month')
+			const dayNumP = document.createElement('p')
+			dayNumP.classList.add('day-number')
+			dayNumP.innerHTML = dayNum
+			calendarBoxes[dayTracker].appendChild(dayNumP)
+			const eventDate = events.length ? parseInt(events[0].StartDate.split('-')[2]) : 99
+
+			// check for an event on this day
+			if(eventDate === dayNum){
+				const dayEvent = document.createElement('h2')
+				dayEvent.classList.add('event-on-calendar')
+				dayEvent.innerHTML = events[0].Title
+				calendarBoxes[dayTracker].appendChild(dayEvent)
+				events.shift()
+			}
+			dayTracker++
+		}else if(dayCounter === 7) dayCounter = 0
+
+		dayCounter++
+		dayNum++
+	}
+}
+
 const getData = async () => {
 	const date = new Date()
-	let dayNum = 1
 
 	/***** set up to create THIS months calendar *****/
 	const today = date.toDateString().split(' ')[2]
@@ -84,53 +112,8 @@ const getData = async () => {
 	thisMonthTitle.innerHTML = thisMonthString
 	nextMonthTitle.innerHTML = nextMonthString
 	calendarBoxes[today].classList.add('today')
-
-	for(var i = 1; i < 32; i++){
-
-		// populate this months calendar with dates and events
-		if(0 < dayCounter && dayCounter < 6){
-			calendarBoxes[dayTracker].classList.add('in-month')
-			const dayNumP = document.createElement('p')
-			dayNumP.classList.add('day-number')
-			dayNumP.innerHTML = dayNum
-			calendarBoxes[dayTracker].appendChild(dayNumP)
-			const eventDate = events.length ? parseInt(events[0].StartDate.split('-')[2]) : 99
-
-			// check for an event on this day
-			if(eventDate === dayNum){
-				const dayEvent = document.createElement('h2')
-				dayEvent.classList.add('event-on-calendar')
-				dayEvent.innerHTML = events[0].Title
-				calendarBoxes[dayTracker].appendChild(dayEvent)
-				events.shift()
-			}
-			dayTracker++
-		}else if(dayCounter === 7) dayCounter = 0
-
-		// populate next months calendar with dates and events
-		if(0 < nextMonthDayCounter && nextMonthDayCounter < 6){
-			nextMonthCalendarBoxes[nextMonthDayTracker].classList.add('in-month')
-			const dayNumP = document.createElement('p')
-			dayNumP.classList.add('day-number')
-			dayNumP.innerHTML = dayNum
-			nextMonthCalendarBoxes[nextMonthDayTracker].appendChild(dayNumP)
-			const eventDate = nextMonthEvents.length ? parseInt(nextMonthEvents[0].StartDate.split('-')[2]) : 99
-
-			// check for an event on this day
-			if(eventDate === dayNum){
-				const dayEvent = document.createElement('h2')
-				dayEvent.classList.add('event-on-calendar')
-				dayEvent.innerHTML = nextMonthEvents[0].Title
-				nextMonthCalendarBoxes[nextMonthDayTracker].appendChild(dayEvent)
-				nextMonthEvents.shift()
-			}
-			nextMonthDayTracker++
-		}else if(nextMonthDayCounter === 7) nextMonthDayCounter = 0
-
-		nextMonthDayCounter++
-		dayCounter++ 	
-		dayNum++
-	}
+	makeCalendar(dayCounter, dayTracker, calendarBoxes, events)
+	makeCalendar(nextMonthDayCounter, nextMonthDayTracker, nextMonthCalendarBoxes, nextMonthEvents)
 }
 
 // potentialy wrap this in a setInterval so that it calls once a day around 7 am or something
