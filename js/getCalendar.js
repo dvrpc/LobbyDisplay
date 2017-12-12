@@ -1,11 +1,44 @@
 const months = ['fake index month', 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
-
-// get a hold of the Upcoming Events information 
 const upcomingEvents = document.querySelector('#upcoming-events')
 const calendarBoxes = document.querySelectorAll('.this-month')
 const nextMonthCalendarBoxes = document.querySelectorAll('.next-month')
 let thisMonthTitle = document.getElementById('current-month-name')
 const nextMonthTitle = document.getElementById('next-month-name')
+
+
+const populateUpcomingEvents = (thisMonthsEvents, nextMonthsEvents, year, thisMonth, today) => {
+	const notEnoughEvents = {StartDate: '', Title: '', StartTime: '', EndTime: ''}
+	for(var i = 0; i < 5; i++){
+
+		// figure out if the event is coming from this month or next month then grab it and shift the array it came from
+		// edge case where there aren't 5 events between the two months, use the empty object
+		const thisEvent = thisMonthsEvents.length ? thisMonthsEvents.shift() : nextMonthsEvents.length ? nextMonthsEvents.shift() : notEnoughEvents
+		
+		const rawDate = thisEvent.StartDate.split('-')
+		const eventDate = new Date(rawDate[0], rawDate[1], rawDate[2])
+		const todaysDate = new Date(year, thisMonth, today)
+
+		// compare event date to today and skip any events that have already passed
+		if(eventDate < todaysDate) {
+			i--
+			continue
+		}
+
+		const date = `${months[parseInt(rawDate[1])]} ${rawDate[2]}`
+		const title = document.createElement('h2')
+		const timing = thisEvent.StartTime ? `${thisEvent.StartTime} - ${thisEvent.EndTime}  |  ` : ''
+		const content = document.createElement('p')
+		title.innerHTML = thisEvent.Title
+		content.innerHTML = `${timing}  ${date}`
+
+		upcomingEvents.appendChild(title)
+		upcomingEvents.appendChild(content)
+		if(i < 4 ){
+			const hr = document.createElement('hr')
+			upcomingEvents.appendChild(hr)
+		}
+	}
+}
 
 const makeCalendar = (dayCounter, dayTracker, calendarBoxes, events) => {
 	let dayNum = 1
@@ -74,39 +107,8 @@ const getData = async () => {
 	/***** Dynamically build the upcoming events page, limited to 5 events from either this month or next month *****/
 	let eventsHolder = Object.assign([], events)
 	let nextMonthsEventsHolder = Object.assign([], nextMonthEvents)
-	const notEnoughEvents = {StartDate: '', Title: '', StartTime: '', EndTime: ''}
+	populateUpcomingEvents(eventsHolder, nextMonthsEventsHolder, year, thisMonth, today)
 
-	for(var i = 0; i < 5; i++){
-
-		// figure out if the event is coming from this month or next month then grab it and shift the array it came from
-		// edge case where there aren't 5 events between the two months, use the empty object
-		const thisEvent = eventsHolder.length ? eventsHolder.shift() : nextMonthsEventsHolder.length ? nextMonthsEventsHolder.shift() : notEnoughEvents
-		
-		const rawDate = thisEvent.StartDate.split('-')
-		const eventDate = new Date(rawDate[0], rawDate[1], rawDate[2])
-		const todaysDate = new Date(year, thisMonth, today)
-
-		// compare event date to today and skip any events that have already passed
-		if(eventDate < todaysDate) {
-			i--
-			continue
-		}
-
-		const date = `${months[parseInt(rawDate[1])]} ${rawDate[2]}`
-		const title = document.createElement('h2')
-		const timing = thisEvent.StartTime ? `${thisEvent.StartTime} - ${thisEvent.EndTime}  |  ` : ''
-		const content = document.createElement('p')
-		title.innerHTML = thisEvent.Title
-		content.innerHTML = `${timing}  ${date}`
-
-		upcomingEvents.appendChild(title)
-		upcomingEvents.appendChild(content)
-		if(i < 4 ){
-			const hr = document.createElement('hr')
-			upcomingEvents.appendChild(hr)
-		}
-	}
-	
 
 	/***** Dynamically build BOTH calendars *****/
 	thisMonthTitle.innerHTML = thisMonthString
