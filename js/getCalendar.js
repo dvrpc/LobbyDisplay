@@ -88,6 +88,7 @@ const getData = async () => {
 	const thisMonthStream = await fetch(`https://www.dvrpc.org/asp/homepage/getCalendarItems.aspx?timemin=${timemin}&timemax=${timemax}`)
 	const events = await thisMonthStream.json()
 
+
 	/***** set up to create NEXT months calendar *****/
 	const nextMonth = date.getMonth() === 11 ? 01 : date.getMonth() + 2
 	const nextMonthString = months[nextMonth] 
@@ -113,7 +114,7 @@ const getData = async () => {
 	/***** Dynamically build BOTH calendars *****/
 	thisMonthTitle.innerHTML = thisMonthString
 	nextMonthTitle.innerHTML = nextMonthString
-	calendarBoxes[today].classList.add('today')
+	calendarBoxes[parseInt(today)].classList.add('today')
 	makeCalendar(dayCounter, dayTracker, calendarBoxes, events)
 	makeCalendar(nextMonthDayCounter, nextMonthDayTracker, nextMonthCalendarBoxes, nextMonthEvents)
 }
