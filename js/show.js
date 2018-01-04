@@ -20,12 +20,15 @@ const updateView = arr => {
 
 	// adds hidden to it
 	currentView.classList.add('hidden')
+	currentView.classList.remove('active')
 
 	// check if current view is the last element & removes hidden from 1st element if true
 	if(index === (arr.length - 1)){
+		arr[0].classList.add('active')
 		arr[0].classList.remove('hidden')
 	}else{
 		// removes hidden from the next element when currentView isn't the last element
+		arr[index + 1].classList.add('active')
 		arr[index + 1].classList.remove('hidden')
 	}
 } 

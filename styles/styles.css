@@ -3,6 +3,7 @@
 	margin: 0;
 	padding: 0;
 	font-family: 'Roboto', sans-serif;
+	overflow-y: hidden;
 }
 body, html{
 	height: 100%;
@@ -28,14 +29,22 @@ body, html{
 	background-size: cover;
 }
 /* fade-in animation */
-@keyframes fadeIn{
+@keyframes logoFadeIn{
 	0% {opacity: 0;}
 	100% {opacity: 1;}
 }
 .logo{
 	padding: 20% 0 0 1.5%;
-	animation-name: fadeIn;
+	animation-name: logoFadeIn;
 	animation-duration: 8s;
+}
+@keyframes pageFadeIn{
+	0% {padding-top: 95%;}
+	90% {padding-top: 0;}
+}
+.active{
+	animation-name: pageFadeIn;
+	animation-duration: 4s;
 }
 /************************************************************************************/
 
