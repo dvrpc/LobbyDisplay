@@ -39,8 +39,8 @@ body, html{
 	animation-duration: 8s;
 }
 @keyframes pageFadeIn{
-	0% {padding-top: 95%;}
-	90% {padding-top: 0;}
+	0% {opacity: 0.5; padding-top: 95%;}
+	90% {opacity: 1; padding-top: 0;}
 }
 .active{
 	animation-name: pageFadeIn;

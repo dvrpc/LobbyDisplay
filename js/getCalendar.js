@@ -5,6 +5,14 @@ const nextMonthCalendarBoxes = document.querySelectorAll('.next-month')
 let thisMonthTitle = document.getElementById('current-month-name')
 const nextMonthTitle = document.getElementById('next-month-name')
 
+const convertToAMPM = timeString => {
+	if(!timeString) return ''
+	let hours = +timeString.substr(0, 2)
+	const hoursFormatted = (hours % 12) || 12
+	let amORpm = hours < 12 ? ' am' : ' pm'
+	const formattedTime = hoursFormatted + timeString.substr(2, 3) + amORpm
+	return formattedTime
+}
 
 const populateUpcomingEvents = (thisMonthsEvents, nextMonthsEvents, year, thisMonth, today) => {
 	const notEnoughEvents = {StartDate: '', Title: '', StartTime: '', EndTime: ''}
@@ -13,7 +21,6 @@ const populateUpcomingEvents = (thisMonthsEvents, nextMonthsEvents, year, thisMo
 		// figure out if the event is coming from this month or next month then grab it and shift the array it came from
 		// edge case where there aren't 5 events between the two months, use the empty object
 		const thisEvent = thisMonthsEvents.length ? thisMonthsEvents.shift() : nextMonthsEvents.length ? nextMonthsEvents.shift() : notEnoughEvents
-		
 		const rawDate = thisEvent.StartDate.split('-')
 		const eventDate = new Date(rawDate[0], rawDate[1], rawDate[2])
 		const todaysDate = new Date(year, thisMonth, today)
@@ -24,9 +31,13 @@ const populateUpcomingEvents = (thisMonthsEvents, nextMonthsEvents, year, thisMo
 			continue
 		}
 
+		if(rawDate[2][0] === '0') rawDate[2] = rawDate[2][1]
 		const date = `${months[parseInt(rawDate[1])]} ${rawDate[2]}`
+		const start = convertToAMPM(thisEvent.StartTime)
+		const end = convertToAMPM(thisEvent.EndTime)
+		const timing = start || end ? `${start} - ${end} | ` : '' 
+		
 		const title = document.createElement('h2')
-		const timing = thisEvent.StartTime ? `${thisEvent.StartTime} - ${thisEvent.EndTime}  |  ` : ''
 		const content = document.createElement('p')
 		title.innerHTML = thisEvent.Title
 		content.innerHTML = `${timing}  ${date}`
@@ -69,7 +80,7 @@ const makeCalendar = (dayCounter, dayTracker, calendarBoxes, events) => {
 	}
 }
 
-const getData = async () => {
+const getData = (async () => {
 	const date = new Date()
 
 	/***** set up to create THIS months calendar *****/
@@ -117,7 +128,8 @@ const getData = async () => {
 	calendarBoxes[parseInt(today)].classList.add('today')
 	makeCalendar(dayCounter, dayTracker, calendarBoxes, events)
 	makeCalendar(nextMonthDayCounter, nextMonthDayTracker, nextMonthCalendarBoxes, nextMonthEvents)
-}
 
-// call the function ever 12 hours
-window.setInterval(getData(), 43200000)
+	// refresh the page & call the function every 12 hours
+	setInterval(() => window.location.reload(true), 43200000)	
+})()
+	
