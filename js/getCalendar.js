@@ -119,5 +119,5 @@ const getData = async () => {
 	makeCalendar(nextMonthDayCounter, nextMonthDayTracker, nextMonthCalendarBoxes, nextMonthEvents)
 }
 
-// potentialy wrap this in a setInterval so that it calls once a day around 7 am or something
-getData()
+// call the function ever 12 hours
+window.setInterval(getData(), 43200000)
