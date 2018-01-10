@@ -4,6 +4,8 @@ const calendarBoxes = document.querySelectorAll('.this-month')
 const nextMonthCalendarBoxes = document.querySelectorAll('.next-month')
 let thisMonthTitle = document.getElementById('current-month-name')
 const nextMonthTitle = document.getElementById('next-month-name')
+const announcementsSection = document.querySelector('#announcements')
+const productsSection = document.querySelector('#new-products')
 
 const convertToAMPM = timeString => {
 	if(!timeString) return ''
@@ -80,6 +82,47 @@ const makeCalendar = (dayCounter, dayTracker, calendarBoxes, events) => {
 	}
 }
 
+const populateAnnouncementsAndNewProducts = homepage => {
+	/*
+		Announcements: homepage.anns[n].title (as a header) & homepage.anns[n].description (as the p)
+		New Products: homepage.pubs[n].title (as a header) & homepage.pubs[n].abstract (as the p - need to set a char limit)
+		^ want all 3 of each, so just pass them both into the same function and do it all at once. 
+	*/
+	console.log('homepage is ', homepage)
+	for(var i = 0; i < 3; i++){
+		// Create the Announcements page
+		const announcementsTitle = document.createElement('h2')
+		const announcementsContent = document.createElement('p')
+		announcementsTitle.innerHTML = homepage.anns[i].title
+		announcementsContent.innerHTML = homepage.anns[i].description
+
+		announcementsSection.appendChild(announcementsTitle)
+		announcementsSection.appendChild(announcementsContent)
+
+		// Create the new products page
+		const newProductsTitle = document.createElement('h2')
+		const newProductsContent = document.createElement('p')
+		let abstract = homepage.pubs[i].Abstract
+		// break up into component words, cut off excess and append '...'
+		if(abstract.length > 170){
+			let nthZero = abstract.indexOf(' ', 150)
+			var truncatedAbstract = abstract.substring(0, nthZero) + ' ...'
+		}
+		
+		newProductsTitle.innerHTML = homepage.pubs[i].Title
+		newProductsContent.innerHTML = truncatedAbstract || abstract
+
+		productsSection.appendChild(newProductsTitle)
+		productsSection.appendChild(newProductsContent)
+
+		if(i < 2){
+			const hr = document.createElement('hr')
+			announcementsSection.appendChild(hr)
+			productsSection.appendChild(hr)
+		}
+	}
+}
+
 const getData = (async () => {
 	const date = new Date()
 
@@ -116,6 +159,11 @@ const getData = (async () => {
 	const nextMonthEvents = await nextMonthStream.json()
 
 
+	/***** set up to create the Announcements page *****/
+	const homepageStream = await fetch('https://www.dvrpc.org/asp/homepage')
+	const homepage = await homepageStream.json()
+
+
 	/***** Dynamically build the upcoming events page, limited to 5 events from either this month or next month *****/
 	let eventsHolder = Object.assign([], events)
 	let nextMonthsEventsHolder = Object.assign([], nextMonthEvents)
@@ -128,6 +176,11 @@ const getData = (async () => {
 	calendarBoxes[parseInt(today)].classList.add('today')
 	makeCalendar(dayCounter, dayTracker, calendarBoxes, events)
 	makeCalendar(nextMonthDayCounter, nextMonthDayTracker, nextMonthCalendarBoxes, nextMonthEvents)
+
+
+	/***** Dynamically build the Announcements & New Products pages *****/
+	populateAnnouncementsAndNewProducts(homepage)
+
 
 	// refresh the page & call the function every 12 hours
 	setInterval(() => window.location.reload(true), 43200000)	
