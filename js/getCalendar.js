@@ -53,12 +53,14 @@ const populateUpcomingEvents = (thisMonthsEvents, nextMonthsEvents, year, thisMo
 	}
 }
 
-const makeCalendar = (dayCounter, dayTracker, calendarBoxes, events) => {
+const makeCalendar = (dayCounter, dayTracker, calendarBoxes, events, thisMonth) => {
 	let dayNum = 1
+	const today = new Date().getDate()
 	for(var i = 1; i < 32; i++){
 
 		// populate the months calendar with dates and events
 		if(0 < dayCounter && dayCounter < 6){
+			if(thisMonth && dayNum === today) calendarBoxes[dayTracker].classList.add('today')
 			calendarBoxes[dayTracker].classList.add('in-month')
 			const dayNumP = document.createElement('p')
 			dayNumP.classList.add('day-number')
@@ -83,12 +85,9 @@ const makeCalendar = (dayCounter, dayTracker, calendarBoxes, events) => {
 }
 
 const populateAnnouncementsAndNewProducts = homepage => {
-	/*
-		Announcements: homepage.anns[n].title (as a header) & homepage.anns[n].description (as the p)
-		New Products: homepage.pubs[n].title (as a header) & homepage.pubs[n].abstract (as the p - need to set a char limit)
-		^ want all 3 of each, so just pass them both into the same function and do it all at once. 
-	*/
+
 	console.log('homepage is ', homepage)
+
 	for(var i = 0; i < 3; i++){
 		// Create the Announcements page
 		const announcementsTitle = document.createElement('h2')
@@ -100,25 +99,38 @@ const populateAnnouncementsAndNewProducts = homepage => {
 		announcementsSection.appendChild(announcementsContent)
 
 		// Create the new products page
+		const productsWrapper = document.createElement('div')
+		const vert = document.createElement('div')
+		vert.classList.add('productsVert')
+		productsWrapper.classList.add('products-wrapper')
+		const newProductsImg = document.createElement('img')
 		const newProductsTitle = document.createElement('h2')
 		const newProductsContent = document.createElement('p')
 		let abstract = homepage.pubs[i].Abstract
+
 		// break up into component words, cut off excess and append '...'
-		if(abstract.length > 170){
+		if(abstract.length > 150){
 			let nthZero = abstract.indexOf(' ', 150)
 			var truncatedAbstract = abstract.substring(0, nthZero) + ' ...'
 		}
-		
+
+		newProductsImg.src = `https://www.dvrpc.org/asp/pubs/100px/${homepage.pubs[i].PubId}.png`
+		newProductsImg.alt = `${homepage.pubs[i].Title} image`
+		newProductsImg.classList.add('new-products-img')
 		newProductsTitle.innerHTML = homepage.pubs[i].Title
 		newProductsContent.innerHTML = truncatedAbstract || abstract
 
-		productsSection.appendChild(newProductsTitle)
-		productsSection.appendChild(newProductsContent)
+		productsWrapper.appendChild(newProductsImg)
+		vert.appendChild(newProductsTitle)
+		vert.appendChild(newProductsContent)
+		productsWrapper.appendChild(vert)
+		productsSection.appendChild(productsWrapper)
 
 		if(i < 2){
 			const hr = document.createElement('hr')
+			const hr2 = document.createElement('hr')
 			announcementsSection.appendChild(hr)
-			productsSection.appendChild(hr)
+			productsSection.appendChild(hr2)
 		}
 	}
 }
@@ -127,7 +139,7 @@ const getData = (async () => {
 	const date = new Date()
 
 	/***** set up to create THIS months calendar *****/
-	const today = date.toDateString().split(' ')[2]
+	const today = date.getDate()
 	let thisMonth = date.getMonth() + 1
 	const thisMonthString = months[thisMonth]
 	const year = date.getFullYear()
@@ -173,9 +185,8 @@ const getData = (async () => {
 	/***** Dynamically build BOTH calendars *****/
 	thisMonthTitle.innerHTML = thisMonthString
 	nextMonthTitle.innerHTML = nextMonthString
-	calendarBoxes[parseInt(today)].classList.add('today')
-	makeCalendar(dayCounter, dayTracker, calendarBoxes, events)
-	makeCalendar(nextMonthDayCounter, nextMonthDayTracker, nextMonthCalendarBoxes, nextMonthEvents)
+	makeCalendar(dayCounter, dayTracker, calendarBoxes, events, true)
+	makeCalendar(nextMonthDayCounter, nextMonthDayTracker, nextMonthCalendarBoxes, nextMonthEvents, false)
 
 
 	/***** Dynamically build the Announcements & New Products pages *****/

@@ -5,10 +5,12 @@ let homepage = document.querySelector('.homepage')
 let upcoming = document.querySelector('.upcoming')
 let this_month = document.querySelector('.this-month-calendar')
 let next_month = document.querySelector('.next-month-calendar')
+let announcements = document.querySelector('.announcements')
+let products = document.querySelector('.products')
 let endpage = document.querySelector('.endpage')
 
 // make an array of the divs
-const elements = [homepage, upcoming, this_month, next_month, endpage]
+const elements = [homepage, upcoming, this_month, next_month, announcements, products, endpage]
 
 // add/remove the hidden class 
 const updateView = arr => {
