@@ -182,23 +182,35 @@ hr{
 	width: 80%;
 	margin: 0 auto;
 }
+/************************************************************************************/
 
 /* new products styles */
 .products{
 	background: url("../imgs/products.jpg") no-repeat center center fixed;
 }
+
+/* the main container for each chunk of text + h2 + p */
 .products-wrapper{
+	width: 80%;
 	display: flex;
+	margin: 0 auto;
+	align-items: center;
 }
 .products-wrapper img{
 	height: 50%;
 	width: 50%;
-	padding-right: 20px;
 }
+/* the container for the h2 + p */
 .productsVert{
-	flex-direction: column !important;
+	justify-content: flex-start;
 	text-align: left;
+	padding-left: 5%;
 }
+.productsVert p{
+	margin: 0;
+	width: 100%;
+}
+/************************************************************************************/
 
 
 /* endpage styles */
