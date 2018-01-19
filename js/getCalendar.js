@@ -109,6 +109,7 @@ const populateAnnouncementsAndNewProducts = homepage => {
 		let abstract = homepage.pubs[i].Abstract
 
 		// break up into component words, cut off excess and append '...'
+		// edit this truncation jawn if necessary 
 		if(abstract.length > 150){
 			let nthZero = abstract.indexOf(' ', 150)
 			var truncatedAbstract = abstract.substring(0, nthZero) + ' ...'

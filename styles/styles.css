@@ -29,21 +29,17 @@ body, html{
 	background-size: cover;
 }
 /* fade-in animation */
-@keyframes logoFadeIn{
+@keyframes fadeIn{
 	0% {opacity: 0;}
 	100% {opacity: 1;}
 }
 .logo{
 	padding: 20% 0 0 7%;
-	animation-name: logoFadeIn;
+	animation-name: fadeIn;
 	animation-duration: 8s;
 }
-@keyframes pageFadeIn{
-	0% {opacity: 0.5; padding-top: 95%;}
-	90% {opacity: 1; padding-top: 0;}
-}
 .active{
-	animation-name: logoFadeIn;
+	animation-name: fadeIn;
 	animation-duration: 4s;
 }
 /************************************************************************************/
@@ -197,8 +193,8 @@ hr{
 	align-items: center;
 }
 .products-wrapper img{
-	height: 50%;
-	width: 50%;
+	min-height: 10%;
+	min-width: 10%;
 }
 /* the container for the h2 + p */
 .productsVert{
