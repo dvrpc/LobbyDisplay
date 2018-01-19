@@ -86,8 +86,6 @@ const makeCalendar = (dayCounter, dayTracker, calendarBoxes, events, thisMonth) 
 
 const populateAnnouncementsAndNewProducts = homepage => {
 
-	console.log('homepage is ', homepage)
-
 	for(var i = 0; i < 3; i++){
 		// Create the Announcements page
 		const announcementsTitle = document.createElement('h2')

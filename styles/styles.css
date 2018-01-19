@@ -33,14 +33,23 @@ body, html{
 	0% {opacity: 0;}
 	100% {opacity: 1;}
 }
+@keyframes panning{
+	from{
+		background-size: 100%;
+	}
+	to{
+		background-size: 110%;
+	}
+}
 .logo{
 	padding: 20% 0 0 7%;
-	animation-name: fadeIn;
-	animation-duration: 8s;
+	animation: fadeIn 8s;
 }
-.active{
-	animation-name: fadeIn;
-	animation-duration: 4s;
+.active section h2, .active section p, .active section div, .active section hr{
+	animation: fadeIn 3s;
+}
+div:not(.hidden):not(.homepage):not(.endpage){
+	animation: panning 10s linear;
 }
 /************************************************************************************/
 
