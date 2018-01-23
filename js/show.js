@@ -15,7 +15,7 @@ const elements = [homepage, upcoming, this_month, next_month, announcements, pro
 // add/remove the hidden class 
 const updateView = arr => {
 	// finds the current non-hidden element and avoids grabbing the divs associated w/the calendar
-	let currentView = document.querySelector('div:not(.hidden):not(.weekdays):not(.days):not(.box)')
+	let currentView = document.querySelector('div:not(.hidden):not(.weekdays):not(.days):not(.box):not(.products-wrapper):not(.productsVert)')
 
 	// get index of currentView
 	const index = arr.indexOf(currentView) // 0 for homepage, 4 for endpage

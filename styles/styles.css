@@ -45,7 +45,7 @@ body, html{
 	padding: 20% 0 0 7%;
 	animation: fadeIn 8s;
 }
-.active section h2, .active section p, .active section div, .active section hr{
+.active section h2, .active section p, .active section div:not(.products-wrapper):not(.productsVert), .active section hr{
 	animation: fadeIn 3s;
 }
 div:not(.hidden):not(.homepage):not(.endpage){
