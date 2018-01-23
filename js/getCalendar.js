@@ -23,6 +23,9 @@ const populateUpcomingEvents = (thisMonthsEvents, nextMonthsEvents, year, thisMo
 		// figure out if the event is coming from this month or next month then grab it and shift the array it came from
 		// edge case where there aren't 5 events between the two months, use the empty object
 		const thisEvent = thisMonthsEvents.length ? thisMonthsEvents.shift() : nextMonthsEvents.length ? nextMonthsEvents.shift() : notEnoughEvents
+		// move on in the edge case where there aren't 5 events between two months		
+		if(thisEvent === notEnoughEvents) break
+		
 		const rawDate = thisEvent.StartDate.split('-')
 		const eventDate = new Date(rawDate[0], rawDate[1], rawDate[2])
 		const todaysDate = new Date(year, thisMonth, today)
@@ -32,7 +35,6 @@ const populateUpcomingEvents = (thisMonthsEvents, nextMonthsEvents, year, thisMo
 			i--
 			continue
 		}
-
 		if(rawDate[2][0] === '0') rawDate[2] = rawDate[2][1]
 		const date = `${months[parseInt(rawDate[1])]} ${rawDate[2]}`
 		const start = convertToAMPM(thisEvent.StartTime)
