@@ -150,6 +150,7 @@ hr{
 .event-on-calendar{
 	text-align: right !important;
 	font-size: 25px !important;
+	padding-bottom: 5%;
 }
 .in-month{
 	background-color: white;
