@@ -149,8 +149,7 @@ hr{
 }
 .event-on-calendar{
 	text-align: right !important;
-	font-size: 25px;
-	padding-bottom: 5%;
+	font-size: 25px !important;
 }
 .in-month{
 	background-color: white;

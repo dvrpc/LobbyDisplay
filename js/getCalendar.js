@@ -150,7 +150,7 @@ const getData = (async () => {
 	const timemax = `${year}-${thisMonth}-${endOfMonth}`
 
 	let dayCounter = new Date(`${thisMonthString}-${year}-01`).getDay()
-	let dayTracker = dayCounter - 1
+	let dayTracker = dayCounter > 0 ? dayCounter - 1 : 0
 
 	const thisMonthStream = await fetch(`https://www.dvrpc.org/asp/homepage/getCalendarItems.aspx?timemin=${timemin}&timemax=${timemax}`)
 	const events = await thisMonthStream.json()
@@ -166,7 +166,7 @@ const getData = (async () => {
 	const timemaxNext = `${nextMonthYear}-${nextMonth}-${endOfNextMonth}`
 
 	let nextMonthDayCounter = new Date(`${nextMonthString}-${nextMonthYear}-01`).getDay()
-	let nextMonthDayTracker = nextMonthDayCounter - 1
+	let nextMonthDayTracker = nextMonthDayCounter > 0 ? nextMonthDayCounter - 1 : 0
 
 	const nextMonthStream = await fetch(`https://www.dvrpc.org/asp/homepage/getCalendarItems.aspx?timemin=${timeminNext}&timemax=${timemaxNext}`)
 	const nextMonthEvents = await nextMonthStream.json()
