@@ -62,6 +62,10 @@ const makeCalendar = (dayCounter, dayTracker, calendarBoxes, events, thisMonth) 
 
 		// populate the months calendar with dates and events
 		if(0 < dayCounter && dayCounter < 6){
+			
+			// handle case where calendar box is undefined
+			if(!calendarBoxes[dayTracker]) continue
+
 			if(thisMonth && dayNum === today) calendarBoxes[dayTracker].classList.add('today')
 			calendarBoxes[dayTracker].classList.add('in-month')
 			const dayNumP = document.createElement('p')
